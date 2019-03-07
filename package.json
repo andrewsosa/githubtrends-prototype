@@ -1,0 +1,32 @@
+{
+  "name": "@andrewsosa/parcel-react-starter",
+  "version": "1.0.0",
+  "description": "A starter kit for Parcel React projects",
+  "keywords": [],
+  "author": "@andrewsosa <andrew@andrewsosa.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "dotenv": "^6.2.0",
+    "eslint": "^5.13.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jest": "^22.3.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "prettier": "^1.16.4",
+  },
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "parcel-bundler": "^1.11.0",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "react-hot-loader": "^4.5.3",
+    "react-router-dom": "^4.3.1",
+  }
+}
