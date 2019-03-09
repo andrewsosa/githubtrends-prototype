@@ -5,6 +5,10 @@
   "keywords": [],
   "author": "@andrewsosa <andrew@andrewsosa.com>",
   "license": "MIT",
+  "scripts": {
+    "app": "parcel web/index.html",
+    "api": "micro-dev router.js"
+  },
   "devDependencies": {
     "dotenv": "^6.2.0",
     "eslint": "^5.13.0",
@@ -15,6 +19,7 @@
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
     "prettier": "^1.16.4",
+    "sass": "^1.17.2",
     "supertest": "^3.4.2"
   },
   "dependencies": {
@@ -24,6 +29,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "bulma": "^0.7.4",
     "finalhandler": "^1.1.1",
     "micro": "^9.3.3",
     "micro-cors": "^0.1.1",

@@ -1,0 +1,48 @@
+@charset "utf-8";
+
+// Import a Google Font
+// @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+// @import url('https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css');
+
+// Style colors
+$grey-dark: #2a4b55;
+$blue: #1683fb;
+$gold: #eac04b;
+$grey-light: #d1d7de;
+
+// Update Bulma's global variables
+// $family-sans-serif: 'Helvetica Neue', Helvetica, Roboto, sans-serif;
+// $family-monospace: 'Fira Code', 'Roboto Mono', monospace;
+
+$primary: $blue;
+
+// Bulma base
+@import "~bulma/sass/utilities/_all.sass";
+@import "~bulma/sass/base/_all.sass";
+
+// $link: darken($primary, 10%);
+// $background: $white-ter;
+$widescreen-enabled: false;
+$fullhd-enabled: false;
+
+// Update some of Bulma's component variables
+// $body-background-color: $background;
+// $control-border-width: 2px;
+// $input-border-color: transparent;
+// $input-shadow: none;
+
+// Import only what you need from Bulma
+@import "~bulma/sass/grid/columns.sass";
+@import "~bulma/sass/elements/box.sass";
+@import "~bulma/sass/elements/button.sass";
+@import "~bulma/sass/elements/container.sass";
+@import "~bulma/sass/elements/content.sass";
+@import "~bulma/sass/components/navbar.sass";
+@import "~bulma/sass/layout/hero.sass";
+@import "~bulma/sass/layout/section.sass";
+@import "~bulma/sass/layout/footer.sass";
+
+// Menu
+// $menu-item-color: $text-invert;
+// $menu-item-radius: 0;
+@import "~bulma/sass/components/menu.sass";

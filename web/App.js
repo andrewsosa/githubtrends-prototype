@@ -1,7 +1,9 @@
-import React from 'react';
+import React from "react";
+
+import Section from "./layout/Section";
 
 const App = () => {
-    return <div>Hello, world!</div>;
+  return <Section>Hello, world!</Section>;
 };
 
 export default App;
