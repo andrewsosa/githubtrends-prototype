@@ -7,7 +7,7 @@ require("dotenv").config();
 
 const cors = require("micro-cors")();
 const logger = require("morgan")("dev");
-const router = require("./api/util/router");
+const router = require("./util/router");
 
 const routes = ["/api/ticket", "/api/event"];
 const handler = routes.map(r => ({ url: `${r}*`, fn: require(`.${r}`) }));
