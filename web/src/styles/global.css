@@ -1,0 +1,29 @@
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:root {
+  /* --craterBrown: #43272c;
+  --majorelleBlue: #604fd7; */
+
+  --primary: #ae20ac;
+  --secondary: #a4cd85;
+
+  /*
+
+  #d932e8
+  #def8cd
+
+  #4b6d83
+  #d2cf68
+
+  #ae20ac
+  #a4cd85
+
+  #462251
+  #9bd50d
+
+  */
+}
