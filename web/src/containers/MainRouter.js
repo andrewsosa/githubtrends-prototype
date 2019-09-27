@@ -1,16 +1,19 @@
 import React from "react";
-import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
-import Layout from "../components/Layout";
-import Home from "../pages/home";
+import {
+  Route,
+  Switch,
+  Redirect,
+  BrowserRouter as Router,
+} from "react-router-dom";
+import ActivityChart from "../charts/ActivityChart";
 
 export default function MainRouter() {
   return (
     <Router>
-      <Layout className="sans-serif">
-        <Switch>
-          <Route exact path="/" component={Home} />
-        </Switch>
-      </Layout>
+      <Switch>
+        <Route exact path="/" component={() => <Redirect to="/activity" />} />
+        <Route path="/activity" component={ActivityChart} />
+      </Switch>
     </Router>
   );
 }

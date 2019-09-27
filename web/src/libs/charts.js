@@ -4,7 +4,7 @@ import type { Dataset, ChartData } from "./types";
 
 type Color = [number, number, number];
 
-const COLOR_ARRAY: Colors[] = [
+const COLOR_ARRAY: Color[] = [
   [0, 116, 217],
   [255, 133, 27],
   [46, 204, 64],

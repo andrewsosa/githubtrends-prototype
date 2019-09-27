@@ -16,7 +16,7 @@ export default function SearchBar() {
   return (
     <Input
       className="w-100 f4 fw2 ph3 pv2 ba bw1 br3 b--moon-gray"
-      defaultValue="Enter an npm package..."
+      defaultValue="Enter an Github repo..."
     />
   );
 }
