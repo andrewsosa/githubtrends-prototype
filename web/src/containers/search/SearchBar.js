@@ -1,7 +1,7 @@
-import React, { useState, useCallback, useContext } from "react";
+import React, { useCallback, useContext } from "react";
 import styled from "styled-components";
 
-import SearchContext from "../context/search";
+import SearchContext from "./context";
 
 const Input = styled.input`
   &:focus {

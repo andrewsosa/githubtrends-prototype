@@ -38,6 +38,12 @@ export const searchReducer = (state: State, action: Action) => {
         ...state,
         focus: false,
       };
+    case "SELECT":
+      return {
+        ...state,
+        query: "",
+        focus: false,
+      };
     default:
       return state;
   }

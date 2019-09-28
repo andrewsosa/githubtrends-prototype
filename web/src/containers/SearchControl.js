@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 
 import RepoContext from "../context/repo";
-import SearchBar from "../components/SearchBar";
-import SearchResults from "../components/SearchResults";
+import SearchBar from "./search/SearchBar";
+import SearchResults from "./search/SearchResults";
 
 export function SearchTitle() {
   const [{ packages }] = useContext(RepoContext);

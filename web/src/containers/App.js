@@ -10,7 +10,7 @@ import RepoContext, { repoReducer, initialRepoState } from "../context/repo";
 import SearchContext, {
   searchReducer,
   initialSearchState,
-} from "../context/search";
+} from "./search/context";
 
 export default function App() {
   const repoState = useReducer(repoReducer, initialRepoState);

@@ -2,8 +2,8 @@ import React, { useCallback, useContext, useState, useEffect } from "react";
 // import styled from "styled-components";
 import algoliasearch from "algoliasearch/lite";
 
-import RepoContext from "../context/repo";
-import SearchContext from "../context/search";
+import RepoContext from "../../context/repo";
+import SearchContext from "./context";
 
 const appid = "7OG9E7U0M9";
 const apikey = "cc0e518dff8625407892d9e47e689b92";
@@ -12,10 +12,13 @@ const index = searchClient.initIndex("github_repos");
 
 export default function SearchResults() {
   const [, repoDispatch] = useContext(RepoContext);
-  const [{ query, focus }] = useContext(SearchContext);
+  const [{ query, focus }, searchDispatch] = useContext(SearchContext);
   const [options, setOptions] = useState([]);
 
   const onClick = useCallback(repoName => {
+    searchDispatch({
+      type: "SELECT",
+    });
     repoDispatch({
       type: "ADD",
       payload: {
