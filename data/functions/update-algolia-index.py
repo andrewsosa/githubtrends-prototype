@@ -10,6 +10,9 @@ batch = json.load(sys.stdin)
 
 for repo in batch:
     repo['objectID'] = repo['repo_name']
+    owner, name = repo['repo_name'].split("/")
+    repo['owner'] = owner
+    repo['name'] = name
 
 
 index = client.init_index("github_repos")
