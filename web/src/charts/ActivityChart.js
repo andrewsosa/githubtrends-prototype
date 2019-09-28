@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
 
-import SearchContext from "../store";
+// import SearchContext from "../store";
 import { aggregateRepoActivity } from "../libs/contributors";
 import { chartOptions, renderChartData } from "../libs/charts";
 
 export default function ActivityChart() {
-  const [{ packages }] = useContext(SearchContext);
+  // const [{ packages }] = useContext(SearchContext);
 
   const [chartData, setChartData] = useState({});
 
@@ -29,7 +29,9 @@ export default function ActivityChart() {
       <SearchBar />
       <pre>{JSON.stringify(chartData, null, 2)}</pre>
     </div> */}
-      <Line data={chartData} options={chartOptions()} />
+      <div className="mt5">
+        <Line data={chartData} options={chartOptions()} />
+      </div>
     </>
   );
 }

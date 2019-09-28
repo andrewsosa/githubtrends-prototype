@@ -6,18 +6,24 @@ import Layout from "../components/Layout";
 import SearchControl from "./SearchControl";
 import MainRouter from "./MainRouter";
 
-import SearchContext from "../store";
-import { searchReducer, initialSearchState } from "../store/reducers/search";
+import RepoContext, { repoReducer, initialRepoState } from "../context/repo";
+import SearchContext, {
+  searchReducer,
+  initialSearchState,
+} from "../context/search";
 
 export default function App() {
+  const repoState = useReducer(repoReducer, initialRepoState);
   const searchState = useReducer(searchReducer, initialSearchState);
 
   return (
-    <SearchContext.Provider value={searchState}>
+    <RepoContext.Provider value={repoState}>
       <Layout>
-        <SearchControl />
-        <MainRouter />
+        <SearchContext.Provider value={searchState}>
+          <SearchControl />
+        </SearchContext.Provider>
+        {/* <MainRouter /> */}
       </Layout>
-    </SearchContext.Provider>
+    </RepoContext.Provider>
   );
 }

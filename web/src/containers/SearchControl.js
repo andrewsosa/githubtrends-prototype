@@ -1,17 +1,31 @@
-import React, { useContext, useCallback } from "react";
+import React, { useContext } from "react";
 
+import RepoContext from "../context/repo";
 import SearchBar from "../components/SearchBar";
-import SearchContext from "../store";
+import SearchResults from "../components/SearchResults";
 
-export default function SearchControl() {
-  const [{ packages }] = useContext(SearchContext);
+export function SearchTitle() {
+  const [{ packages }] = useContext(RepoContext);
 
   return (
-    <div>
-      <h1 className="f2 fw4">
-        {packages.length === 0 ? "Compare freshness of packages" : packages}
-      </h1>
+    <h1 className="f2 fw4">
+      {packages.size === 0
+        ? "Compare freshness of packages"
+        : [...packages].join(" vs ")}
+    </h1>
+  );
+}
+
+export default function SearchControl() {
+  return (
+    <div className="relative">
+      <SearchTitle />
       <SearchBar />
+      <SearchResults />
+      {/* <InstantSearch indexName="github_repos" searchClient={searchClient}>
+        <SearchBox />
+        <Hits />
+      </InstantSearch> */}
     </div>
   );
 }
