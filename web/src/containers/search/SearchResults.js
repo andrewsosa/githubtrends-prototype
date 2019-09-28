@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useState, useEffect } from "react";
 // import styled from "styled-components";
 import algoliasearch from "algoliasearch/lite";
 
-import RepoContext from "../../context/repo";
+import RepoContext from "../select/context";
 import SearchContext from "./context";
 
 const appid = "7OG9E7U0M9";
@@ -15,17 +15,20 @@ export default function SearchResults() {
   const [{ query, focus }, searchDispatch] = useContext(SearchContext);
   const [options, setOptions] = useState([]);
 
-  const onClick = useCallback(repoName => {
-    searchDispatch({
-      type: "SELECT",
-    });
-    repoDispatch({
-      type: "ADD",
-      payload: {
-        package: repoName,
-      },
-    });
-  });
+  const onClick = useCallback(
+    repoName => {
+      searchDispatch({
+        type: "SELECT",
+      });
+      repoDispatch({
+        type: "ADD",
+        payload: {
+          package: repoName,
+        },
+      });
+    },
+    [searchDispatch, repoDispatch]
+  );
 
   useEffect(() => {
     if (query === "") setOptions([]);

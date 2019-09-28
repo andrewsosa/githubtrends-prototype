@@ -1,8 +1,12 @@
 // @flow
 
+import React from "react";
+
+const RepoContext = React.createContext({});
+export default RepoContext;
+
 type State = {
   packages: Set<string>,
-  query: string,
 };
 
 type Action = {
@@ -12,14 +16,15 @@ type Action = {
   },
 };
 
-export const initialSearchState = {
+export const initialRepoState = {
   packages: new Set<string>(),
 };
 
-export const searchReducer = (state: State, action: Action) => {
+export const repoReducer = (state: State, action: Action) => {
   switch (action.type) {
     case "ADD":
       state.packages.add(action.payload.package);
+      console.log(state);
       return state;
     case "REMOVE":
       state.packages.delete(action.payload.package);

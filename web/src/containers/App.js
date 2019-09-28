@@ -3,14 +3,16 @@ import "tachyons/css/tachyons.min.css";
 import "../styles/global.css";
 
 import Layout from "../components/Layout";
-import SearchControl from "./SearchControl";
-import MainRouter from "./MainRouter";
+import Search from "./search";
+import SelectTitle from "./select/SelectTitle";
+import SelectionTags from "./select/SelectionTags";
+// import MainRouter from "./MainRouter";
 
-import RepoContext, { repoReducer, initialRepoState } from "../context/repo";
 import SearchContext, {
   searchReducer,
   initialSearchState,
 } from "./search/context";
+import RepoContext, { repoReducer, initialRepoState } from "./select/context";
 
 export default function App() {
   const repoState = useReducer(repoReducer, initialRepoState);
@@ -19,9 +21,12 @@ export default function App() {
   return (
     <RepoContext.Provider value={repoState}>
       <Layout>
+        <SelectTitle />
         <SearchContext.Provider value={searchState}>
-          <SearchControl />
+          <Search />
         </SearchContext.Provider>
+
+        <SelectionTags />
         {/* <MainRouter /> */}
       </Layout>
     </RepoContext.Provider>

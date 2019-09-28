@@ -23,16 +23,16 @@ export default function SearchBar() {
     });
   };
 
-  const onInputChange = useCallback(e => {
+  const onInputChange = e => {
     const newValue = (e && e.target && e.target.value) || "";
     changeQuery(newValue);
-  }, []);
+  };
 
   const onFocus = useCallback(() => {
     dispatch({
       type: "FOCUS",
     });
-  }, [query]);
+  }, [query, dispatch]);
 
   const onBlur = useCallback(() => {
     setTimeout(() => {
@@ -40,7 +40,7 @@ export default function SearchBar() {
         type: "UNFOCUS",
       });
     }, 150);
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="relative">

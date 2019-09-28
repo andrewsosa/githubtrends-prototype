@@ -17,10 +17,10 @@ const COLOR_ARRAY: Color[] = [
   [1, 255, 112],
 ];
 
-const color = (i: number, a: number): string => {
+export function color(i: number, a: number): string {
   const rgb = COLOR_ARRAY[i % COLOR_ARRAY.length].join(",");
   return `rgba(${rgb},${a})`;
-};
+}
 
 export function chartOptions(round: string = "week") {
   return {
