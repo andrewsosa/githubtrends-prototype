@@ -1,5 +1,6 @@
-.venv
+.venv*
 .vscode
+.now
 
 # Created by https://www.gitignore.io/api/node,macos,visualstudiocode,python
 # Edit at https://www.gitignore.io/?templates=node,macos,visualstudiocode,python

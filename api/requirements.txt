@@ -1,0 +1,2 @@
+redis==3.3.8
+python-dotenv==0.10.3
