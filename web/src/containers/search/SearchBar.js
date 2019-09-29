@@ -32,7 +32,7 @@ export default function SearchBar() {
     dispatch({
       type: "FOCUS",
     });
-  }, [query, dispatch]);
+  }, [dispatch]);
 
   const onBlur = useCallback(() => {
     setTimeout(() => {
@@ -45,7 +45,7 @@ export default function SearchBar() {
   return (
     <div className="relative">
       <Input
-        className={`w-100 f4 fw2 ph3 pv2 ba bw1 br3 b--moon-gray ${
+        className={`w-100 f4 fw2 ph3 pv2 ba bw1 br2 b--moon-gray ${
           query !== "" && focus ? "br--top" : ""
         }`}
         value={query}

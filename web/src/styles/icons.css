@@ -1,0 +1,113 @@
+@font-face {
+  font-family: NpmTrends;
+  src: url(data:application/font-woff2;charset=utf-8;base64,d09GMgABAAAAAAfwAA0AAAAADowAAAeZAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP0ZGVE0cBmAAgloIBBEICpBkjHMLJAABNgIkA0IEIAWDYAeBJBuUC6OinLHFyP6ZkA2ZPBsukp02+VRP0WDEpRvbVf9k8UYGz5et9v7vnjW7Q7wXk2F3DlM79ZAlFQ2JVYKMIDKPuBixjKopALgpnPMDnsAdoY5XsBS3bcU0NnHtGvBk8wqyOfhMpDJxQRqQYYv3/y5dZXJ96XBL1bFuuSqNsBjzczustSOxbFvQeCocayzlcQhhUbJLdTZpVuK38J0jgGzO+wdyFeDDtQVzlYvMw5rvchkP9JI+Ay6QrWWAQCwonkFJT3KsVIGfsDkWdlBajssVCJDlYjlGzRoJQdiVJfGgZd5lEsRQFEjjfibCHoSY+Cb8Hb7MRfoECkesEKkfO7HwPwMe2npFPQ1I2EPBncdj0Tif3gyaAHNnYn2UZWqGLfoKMTwEY+343Mhh8eVZKHJ7Obg4xZbDcCwSicWisTVO/Ao2ZXMuiJe2e5jxiR+HWTeKqKWVxyBGSVPtyuMIJyHphhWPAgEE2QYm0phiJ8+9XLMbYswwaxxF8o8GJGlZIWVMsJRZVwpjQTjS1B8DhIyoI1IZSNK4gw7gE60sZsba6RGkcncsRc8sgHWSOsBjjdhINSsaxQRFd7g3QIyooUFkQI1H/oDtdfxWsVZjfOSB+Kt9DEpDQ8EJJo7S1fLztEK9cLReRBsoQSNfXwvwbQNpJqKMThwOh7o3iI77G1r6pYD92/eTnMKoV5BbdQ0oxVqdswuP+TUvIPgA4do0/FoYroTpdAJSp2ldYv0ua1jpnQkt286IaINItAuCz7rpGboCkT1YzwlI5yza6IbDYc4EYixz+JzIIGpg3LaxRzRtgqY3Tdxx5ljYAQh0j5PsqBoYIax7l4BWhbHoSNwBo6Ix4IBPU2AbYGTNEKPs8Le+ibVDjIUz1VgXHKYtk1qUh+WHQuq3erxv0wiapGiC0kE5kfPQfsOHDhjuPGCEhq+F9CKDQsMix+3TCvUGgZ/tiOj5OoymYGX93OOlJsBIaPUQdAZrOX/5uAViUnZH6C8oFOdYlb79En9H+BHAdPVidKuHkao/JBSyWoFA16acY63J3x9o/MxmiFkAOYFASZLkBCU0Cboe4/vzrDLAUKpd9XUjDGRi4bqdoPRXJiTZxJoZixs9AuFMGiMMS8DCmE9Q3OC44bXP+cHn/RdkVkRKPJ5W1OrlTz0kar2Qz66DxflCSc4e4MIh0K+qql+CB3LyZIL//P6LFn2wOnrUCrSHD/0eHjueGUjgucocDMtR5uLM3r1MbAeCBLcPhkl6CMTomSP4Q6hYAHokbh8/PANB4OrpwyioAfzNJX99U4HuOfyYkkv2Q318PKRhUY3B9ATR3raLX0oK+pAEn1GzYLyfb0qvlXWHiap90jfSir3isuLSvTvTg8/HLo+FYq1FsGj8wQIFMu51P8jP/f66Z3OjZztUrtg4ZuN9tjYzpfWvNM3q4r1+zggqlaHVxEFUxWiiVXmHL8ve97mHjgzo+piZpSpD8MV93uGV5wdJcfHr3fd/zrNyHjcwIFudHqm6c7RKJrs0+kEFobpILBvHgviS/lOm8NQGwUPFgDeehvh0EI4uW/YJe4h9Ki3NLB6Hfh/1fRyaWVxamobsfVEXaXq8wfPNAMVDgaF0yhQVnOyrPNdxBiJmzSJWS6cGx7YD/p8/yzV+mghVXZj3H4eWogasLk7vJ+APGkheOuhww/1e6H+5NCX5k9XAvcPCGkfIOU5zDfuUHBSkzMwcSTtKD/InK433v3G4tzhT0r+W8nrgJvdyccRJIqTHr4NhgwyL9ItSdi+fscMm5rKev9PGH3/9YB/bc4MGojcA7MRkf67PnBLQa4DdtJX2gpXT3tu72tu5WiWXMckzZpEUHRE1etSuSNpPhsdQI+VkNEmoCq2H4a5oUTE1ZnRn5+6ljU8Z7NlHeHbc+e9Bk3OFWWGq672X/2gaNDB/cn7FzT8/lve+rkr0wS8by/F0XBGYtcp2406e86zKveqBAzdmSZ6/KHIzMljj06W7Qe8vbzvnd6qPpgJgeWeimgLUUyv9T5g8Pza1MzUx5j8/Wg18lneWdBonAesWF5QU/PdaMXJ4trpYPXH5CjNhE/2YbHFRrGH48BXDS0/0FoAnwsxFT6OWb8GTiPdF8RuFLMEIHhSUR+R/mCV5f1EAgY/tbiOPZhf9iyXNzzOLqLA7XGvbjK8f3zGVAmcJ+RxEKPHBAgiaKictFIkj28D85H0S99Oc/QL9YTd61MQSc6wfBlS9Znd/KXmuE9NHFaSbZXy0ugwPoSbF8FAU4iwUlSi7RcME7oiWOAOiR0qih0eIy2QMYuPAUCCiUGCSqGRYLRo2OMxsOXkuegzl210jFKSaNdp16eFYrl+tbu1a1eKlYeXy/toLzQ7YoiOL36VLrTanVEg2bt3VdQlZATv4zer1anFcF362MouOcZsxwO/Uq+UI8CnhWIDr0cxrD5jDDFtnBpcoMx/ev3dt01Vf6wK/5Ba4kWnYGMyZEdwazWj+HPEe1pXOapxTjaM8jxwepi2p7JdcB0WKlmFYSoAvz/kEFRWDESueRCQqMYmfXihTKRn7/+jH68od0d62xjUlzXRJmQSkhswis8kcMpfMI/MzlwMAAA==)
+    format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+.icon {
+  display: inline-block;
+  font: normal normal normal 14px/1 NpmTrends;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  z-index: 0 !important;
+}
+
+.icon::before {
+  z-index: 0 !important;
+}
+
+.icon-fw {
+  width: 1.28571429em;
+  text-align: center;
+}
+
+.icon-ul {
+  padding-left: 0;
+  margin-left: 2.14285714em;
+  list-style-type: none;
+}
+
+.icon-ul > li {
+  position: relative;
+}
+
+.icon-li {
+  position: relative;
+  left: -2.14285714em;
+  width: 2.14285714em;
+  top: 0.14285714em;
+  text-align: center;
+}
+
+.icon-li.icon-lg {
+  left: -1.85714286em;
+}
+
+.icon-cross:before {
+  content: "\f000";
+}
+
+.icon-magnifying-glass:before {
+  content: "\f001";
+}
+
+.icon-chevron-down:before {
+  content: "\f002";
+}
+
+.icon-tools:before {
+  content: "\f003";
+}
+
+.icon-bug:before {
+  content: "\f004";
+}
+
+.icon-flow-branch:before {
+  content: "\f005";
+}
+
+.icon-star:before {
+  content: "\f006";
+}
+
+.icon-github:before {
+  content: "\f007";
+}
+
+.icon-npm:before {
+  content: "\f008";
+}
+
+.icon-plus:before {
+  content: "\f009";
+}
+
+.icon-link:before {
+  content: "\f00a";
+}
+
+.sr-only {
+  position: relative;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.sr-only-focusable:active,
+.sr-only-focusable:focus {
+  position: relative;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+}

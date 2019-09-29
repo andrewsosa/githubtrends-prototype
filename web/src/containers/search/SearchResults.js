@@ -44,8 +44,8 @@ export default function SearchResults() {
 
   return (
     <>
-      {focus && options && options.length !== 0 && (
-        <div className="absolute w-100 bg-white bl br bb bw1 br3 br--bottom b--moon-gray">
+      {focus && query && options && (
+        <div className="absolute w-100 bg-white bl br bb bw1 br2 br--bottom b--moon-gray">
           {options.map(opt => (
             <div
               key={opt.repo_name}
@@ -57,6 +57,13 @@ export default function SearchResults() {
               <span className="f6">{opt.repo_url}</span>
             </div>
           ))}
+          {query.length > 4 && options.length === 0 && (
+            <div className="w-100 ph3 pv2">
+              <span className="f5">No results found</span>
+              <br />
+              <span className="f6">Try a different search...</span>
+            </div>
+          )}
         </div>
       )}
     </>

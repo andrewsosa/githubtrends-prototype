@@ -4,6 +4,7 @@ import type { Node } from "react";
 
 import "tachyons/css/tachyons.min.css";
 import "../styles/global.css";
+import "../styles/icons.css";
 
 import Header from "./Header";
 

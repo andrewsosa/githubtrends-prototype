@@ -9,6 +9,11 @@ type Action = {
   payload: string,
 };
 
+export const ACTIONS = {
+  ADD: "ADD",
+  REMOVE: "REMOVE",
+};
+
 function assemble(packages: State): string {
   return `/${packages.join("-vs-")}`;
 }
@@ -19,13 +24,21 @@ function disassemble(pathname: string): State {
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
-    case "ADD":
+    case ACTIONS.ADD:
       return state.concat([action.payload]);
-    case "REMOVE":
+    case ACTIONS.REMOVE:
       return state.filter(pkg => pkg !== action.payload);
     default:
       return state;
   }
+}
+
+export function withRepo(packages: State, pkg: string): string {
+  return assemble(reducer(packages, { type: ACTIONS.ADD, payload: pkg }));
+}
+
+export function withoutRepo(packages: State, pkg: string): string {
+  return assemble(reducer(packages, { type: ACTIONS.REMOVE, payload: pkg }));
 }
 
 export function useSelection() {
