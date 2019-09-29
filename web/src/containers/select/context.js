@@ -1,35 +1,40 @@
 // @flow
 
-import React from "react";
+import { useLocation, useHistory } from "react-router";
 
-const RepoContext = React.createContext({});
-export default RepoContext;
-
-type State = {
-  packages: Set<string>,
-};
+type State = string[];
 
 type Action = {
   type: string,
-  payload: {
-    package: string,
-  },
+  payload: string,
 };
 
-export const initialRepoState = {
-  packages: new Set<string>(),
-};
+function assemble(packages: State): string {
+  return `/${packages.join("-vs-")}`;
+}
 
-export const repoReducer = (state: State, action: Action) => {
+function disassemble(pathname: string): State {
+  return pathname.slice(1).split("-vs-");
+}
+
+function reducer(state: State, action: Action): State {
   switch (action.type) {
     case "ADD":
-      state.packages.add(action.payload.package);
-      console.log(state);
-      return state;
+      return state.concat([action.payload]);
     case "REMOVE":
-      state.packages.delete(action.payload.package);
-      return state;
+      return state.filter(pkg => pkg !== action.payload);
     default:
       return state;
   }
-};
+}
+
+export function useSelection() {
+  const history = useHistory();
+  const { pathname } = useLocation();
+  const state: State = disassemble(pathname);
+
+  const setState = (action: Action) =>
+    history.push(assemble(reducer(state, action)));
+
+  return [state, setState];
+}

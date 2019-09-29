@@ -7,10 +7,12 @@ import { color } from "../../libs/charts";
 const Tag = styled.span`
   color: ${props => props.color} !important;
   border-color: ${props => props.color} !important;
+  user-select: none;
+  box-sizing: border-box;
 `;
 
 export default function RepoTags() {
-  const [{ packages }] = useContext(RepoContext);
+  const [{ packages }, dispatch] = useContext(RepoContext);
 
   return (
     <div className="mt3">

@@ -1,15 +1,13 @@
 import React, { useContext } from "react";
-
-import RepoContext from "./context";
+import { useSelection } from "./context";
 
 export default function CompareTitle() {
-  const [{ packages }] = useContext(RepoContext);
-
-  console.log("help");
+  // const [{ packages }] = useContext(RepoContext);
+  const [packages] = useSelection();
 
   return (
     <h1 className="f2 fw4">
-      {packages.size === 0
+      {packages.length === 0
         ? "Compare freshness of packages"
         : [...packages].join(" vs ")}
     </h1>
