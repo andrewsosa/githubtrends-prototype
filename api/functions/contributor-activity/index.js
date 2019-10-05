@@ -11,7 +11,16 @@ const client = new redis(`redis://:${REDIS_PASS}@${REDIS_HOST}/0`);
  */
 function wrapped(handler) {
   return async (request, response) => {
+    response.set("Access-Control-Allow-Origin", "*");
     try {
+      // Send response to OPTIONS requests
+      if (req.method === "OPTIONS") {
+        response.set("Access-Control-Allow-Methods", "GET");
+        response.set("Access-Control-Allow-Headers", "Content-Type");
+        response.set("Access-Control-Max-Age", "3600");
+        return response.status(204).send("");
+      }
+
       return handler(request, response);
     } catch (e) {
       // if (e instanceof Error )
@@ -60,8 +69,8 @@ function fetch(repo, counter) {
 /**
  * Handles checking redis for cached response, and then checking github
  * otherwise.
- * @param {*} request gcloud http request object
- * @param {*} response gcloud http response oject
+ * @param {Object} request gcloud http request object
+ * @param {Object} response gcloud http response oject
  */
 async function handler(request, response) {
   const repo = request.url.slice(1);
