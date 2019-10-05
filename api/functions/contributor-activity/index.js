@@ -5,6 +5,10 @@ const redis = require("ioredis");
 const { REDIS_PASS, REDIS_HOST } = process.env;
 const client = new redis(`redis://:${REDIS_PASS}@${REDIS_HOST}/0`);
 
+/**
+ * Wraps an http request handler in some simple error handling logic
+ * @param {*} handler http request handler
+ */
 function wrapped(handler) {
   return async (request, response) => {
     try {
@@ -16,14 +20,25 @@ function wrapped(handler) {
   };
 }
 
+/**
+ * A simple logging function prepending message with a date.
+ * @param {string} message text to print to console
+ */
 function log(message) {
   console.log(`[${new Date()}]: ${message}`);
 }
 
+/**
+ * Recursive fetch call which handles retries if data is not prepared.
+ * @param {string} repo github repository name, e.g. "facebook/react"
+ * @param {number} counter recursive control counter
+ * @return {Promise<Array<{}>} Resolves to a promise containing an array
+ * of contributor entries.
+ */
 function fetch(repo, counter) {
   counter = counter || 0;
 
-  log(`Fetch ${repo} attempt ${counter}`);
+  log(`fetch -- ${repo} attempt ${counter}`);
   return new Promise((resolve, reject) => {
     if (counter >= 3) reject("Too many retries");
     axios
@@ -42,11 +57,17 @@ function fetch(repo, counter) {
   });
 }
 
+/**
+ * Handles checking redis for cached response, and then checking github
+ * otherwise.
+ * @param {*} request gcloud http request object
+ * @param {*} response gcloud http response oject
+ */
 async function handler(request, response) {
   const repo = request.url.slice(1);
   const cache = JSON.parse(await client.get(repo));
 
-  log(`${repo} cache ${cache ? "hit" : "miss"}`);
+  log(`cache -- ${repo} ${cache ? "hit" : "miss"}`);
   if (cache) {
     return response.status(200).send(cache);
   }
