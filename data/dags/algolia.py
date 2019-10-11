@@ -21,10 +21,7 @@ default_args = {
 }
 
 with DAG(
-    "algolia",
-    default_args=default_args,
-    schedule_interval=timedelta(days=1),
-    catchup=False,
+    "algolia", default_args=default_args, schedule_interval="@daily", catchup=False
 ) as dag:
 
     load_bq_to_algolia = BashOperator(
@@ -32,7 +29,7 @@ with DAG(
         bash_command="set -e; python {{ params.filepath }} {{ ds }}",
         params=dict(
             filepath=path.abspath(
-                path.join(path.dirname(__file__), "../functions/bigquery-to-algolia.py")
+                path.join(path.dirname(__file__), "../scripts/bigquery-to-algolia.py")
             )
         ),
     )

@@ -10,7 +10,9 @@ import { chartOptions, renderChartData } from "../../libs/charts";
 
 const loadContributors = (repo: string) =>
   axios
-    .get(`https://api.github.com/repos/${repo}/stats/contributors`)
+    .get(
+      `https://us-central1-githubtrends-254209.cloudfunctions.net/contributor-activity/${repo}`
+    )
     .then(res => res.data)
     .then(data => aggregateRepoActivity(data, { label: repo }));
 
@@ -23,7 +25,7 @@ export default function ActivityChart() {
     Promise.all(repos.map(repo => loadContributors(repo)))
       .then(datasets => renderChartData(datasets))
       .then(data => setChartData(data));
-  }, [repos, JSON.stringify(repos)]);
+  }, [JSON.stringify(repos)]);
 
   console.log("activity chart");
 

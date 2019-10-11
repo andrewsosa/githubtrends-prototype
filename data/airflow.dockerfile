@@ -7,7 +7,7 @@ ENV AIRFLOW_HOME=${AIRFLOW_HOME}
 ADD requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 ADD airflow.prod.cfg airflow.cfg
-ADD dags/ functions/ plugins/ sql/ ${AIRFLOW_HOME}
+ADD dags/ scripts/ plugins/ ${AIRFLOW_HOME}
 
 # Run the server
 CMD [ "sh", "-c", "airflow --help" ]

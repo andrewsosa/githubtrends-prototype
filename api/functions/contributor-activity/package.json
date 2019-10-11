@@ -1,5 +1,5 @@
 {
-  "name": "@codefresh-api/contributor-activity",
+  "name": "@githubtrends-api/contributor-activity",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {

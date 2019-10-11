@@ -25,7 +25,7 @@ default_args = {
 with DAG(
     "github-activity",
     default_args=default_args,
-    schedule_interval="0 21 * * *",
+    schedule_interval="@daily",
     catchup=True,
 ) as dag:
 

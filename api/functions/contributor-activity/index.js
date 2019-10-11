@@ -14,7 +14,7 @@ function wrapped(handler) {
     response.set("Access-Control-Allow-Origin", "*");
     try {
       // Send response to OPTIONS requests
-      if (req.method === "OPTIONS") {
+      if (request.method === "OPTIONS") {
         response.set("Access-Control-Allow-Methods", "GET");
         response.set("Access-Control-Allow-Headers", "Content-Type");
         response.set("Access-Control-Max-Age", "3600");
@@ -23,7 +23,6 @@ function wrapped(handler) {
 
       return handler(request, response);
     } catch (e) {
-      // if (e instanceof Error )
       return response.status(500).send(e);
     }
   };

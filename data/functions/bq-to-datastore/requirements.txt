@@ -1,0 +1,2 @@
+google-cloud-bigquery==1.20.0
+google-cloud-datastore==1.9.0
