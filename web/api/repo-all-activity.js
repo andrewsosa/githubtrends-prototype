@@ -26,7 +26,7 @@ async function handler(req, resp, save) {
       SUM(count) AS count,
       SUM(actors) AS actors
     FROM
-      \`githubtrends-255020.github_trends.github_all_daily_events\`
+      \`githubtrends-255020.github_trends.github_daily_events\`
     WHERE
       repo_name = "${repo}"
       AND DATE_TRUNC(ds, WEEK(MONDAY)) >= DATE "${start}"

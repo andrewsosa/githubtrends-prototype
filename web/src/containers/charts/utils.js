@@ -80,7 +80,9 @@ export function renderChartData(datasets: Dataset[]): ChartData {
 }
 
 export function fetchDataset(repo: string, start: Date): Promise<Dataset> {
-  start = moment(start).format("YYYY-MM-DD");
+  start = moment(start)
+    .subtract(6, "months")
+    .format("YYYY-MM-DD");
   return axios
     .get(`/api/repo-all-activity?repo=${repo}&start=${start}`)
     .then(({ data }) => ({ data, label: repo }))

@@ -1,6 +1,5 @@
 // @flow
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Line } from "react-chartjs-2";
 
 import { useSelection } from "../select/context";
@@ -22,9 +21,7 @@ export default function ActivityChart() {
     // Repo(s) added
     if (incoming.size > loaded.size) {
       const added = [...incoming].filter(el => !loaded.has(el));
-      Promise.all(
-        added.map(repo => Charts.fetchDataset(repo, new Date(2019, 8, 1)))
-      )
+      Promise.all(added.map(repo => Charts.fetchDataset(repo, new Date())))
         .then(data =>
           data.reduce((acc, ds) => acc.set(ds.label, ds), new Map(datasets))
         )

@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Layout from "../components/Layout";
 import Search from "./search";
@@ -24,9 +24,13 @@ export default function App() {
         <SearchContext.Provider value={searchState}>
           <Search />
         </SearchContext.Provider>
-
-        <SelectionTags />
-        <ActivityChart />
+        <Switch>
+          <Route exact path="/" />
+          <Route>
+            <SelectionTags />
+            <ActivityChart />
+          </Route>
+        </Switch>
       </Layout>
     </Router>
   );
