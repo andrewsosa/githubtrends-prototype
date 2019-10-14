@@ -19,7 +19,10 @@ function assemble(packages: State): string {
 }
 
 function disassemble(pathname: string): State {
-  return pathname.slice(1).split("-vs-");
+  return pathname
+    .slice(1)
+    .split("-vs-")
+    .filter(segment => segment !== "");
 }
 
 function reducer(state: State, action: Action): State {
