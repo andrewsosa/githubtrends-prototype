@@ -1,1 +1,0 @@
-[{"type":"STRING","name":"repo_name","mode":"REQUIRED"},{"type":"STRING","name":"repo_url","mode":"REQUIRED"},{"type":"STRING","name":"type","mode":"REQUIRED"},{"type":"INTEGER","name":"count","mode":"REQUIRED"},{"type":"INTEGER","name":"actors","mode":"REQUIRED"},{"type":"DATE","name":"ds","mode":"REQUIRED"}]

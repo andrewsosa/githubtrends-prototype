@@ -3,19 +3,24 @@ from os import path
 
 from airflow import DAG
 from airflow.contrib.operators.bigquery_operator import BigQueryOperator
-from airflow.contrib.operators.bigquery_to_gcs import BigQueryToCloudStorageOperator
-from airflow.contrib.operators.datastore_import_operator import DatastoreImportOperator
+from airflow.operators.python_operator import PythonOperator
+from airflow.operators.latest_only_operator import LatestOnlyOperator
+
+from dags.functions.bigquery_to_algolia import bigquery_to_algolia
+
+# from airflow.contrib.operators.bigquery_to_gcs import BigQueryToCloudStorageOperator
+# from airflow.contrib.operators.datastore_import_operator import DatastoreImportOperator
 
 
 default_args = {
     "owner": "andrew",
     "depends_on_past": False,
-    "start_date": datetime(2019, 10, 1),
+    "start_date": datetime(2019, 4, 1),
     "email": ["andrew@andrewsosa.com"],
     "email_on_failure": False,
     "email_on_retry": False,
     "retries": 1,
-    "retry_delay": timedelta(minutes=1),
+    "retry_delay": timedelta(minutes=5),
     # 'queue': 'bash_queue',
     # 'pool': 'backfill',
     # 'priority_weight': 10,
@@ -32,22 +37,54 @@ with DAG(
     # bq mk githubtrends:github_trends
     # bq mk --time_partitioning_type=DAY githubtrends:github_trends.github_daily_metrics
 
-    DAILY_SNAPSHOT_TABLE = (
+    DAILY_TOP_REPOS = (
+        "githubtrends-255020.github_trends.github_daily_top_repos${{ ds_nodash }}"
+    )
+
+    DAILY_EVENTS_TABLE = (
         "githubtrends-255020.github_trends.github_daily_events${{ ds_nodash }}"
     )
-    # GCS_BUCKET = "github_trends_exports"
 
-    bq_query_daily_snapshot = BigQueryOperator(
-        task_id="bq_github_daily_events",
+    bq_gh_daily_top_repos = BigQueryOperator(
+        task_id="bq_gh_daily_top_repos",
         bigquery_conn_id="google_cloud_default",
-        sql="./sql/github-daily-events.sql",
-        destination_dataset_table=DAILY_SNAPSHOT_TABLE,
+        sql="./sql/github-daily-top-repos.sql",
+        destination_dataset_table=DAILY_TOP_REPOS,
         create_disposition="CREATE_NEVER",
         write_disposition="WRITE_TRUNCATE",
         allow_large_results=True,
         use_legacy_sql=False,
         location="US",
     )
+
+    bq_gh_daily_repo_events = BigQueryOperator(
+        task_id="bq_gh_daily_repo_events",
+        bigquery_conn_id="google_cloud_default",
+        sql="./sql/github-daily-events.sql",
+        destination_dataset_table=DAILY_EVENTS_TABLE,
+        create_disposition="CREATE_NEVER",
+        write_disposition="WRITE_TRUNCATE",
+        allow_large_results=True,
+        use_legacy_sql=False,
+        location="US",
+    )
+
+    upload_latest_only = LatestOnlyOperator(task_id="upload_latest_only")
+
+    bq_gh_algolia_upload = PythonOperator(
+        task_id="bq_gh_algolia_upload",
+        python_callable=bigquery_to_algolia,
+        provide_context=True,
+        templates_exts=[".sql"],
+        templates_dict=dict(
+            query="./sql/github-algolia-export.sql",
+            algolia_app_id="{{ var.value.ALGOLIA_APP_ID }}",
+            algolia_key="{{ var.value.ALGOLIA_ADMIN_KEY }}",
+        ),
+    )
+
+    bq_gh_daily_top_repos >> [bq_gh_daily_repo_events, upload_latest_only]
+    upload_latest_only >> bq_gh_algolia_upload
 
     # bq_export_snapshot_to_gcs = BigQueryToCloudStorageOperator(
     #     task_id="bq_export_snapshot_to_gcs",

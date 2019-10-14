@@ -10,30 +10,33 @@ args = parser.parse_args()
 ds = args.ds
 
 # Init clients
-algolia = SearchClient.create("7OG9E7U0M9", "6f2b8b1468b757c902ecbdd87977c05c")
+algolia = SearchClient.create("ENR4KIKXXV", "d5a9caca8f387a115af07f957d08ade9")
 bq = bigquery.Client()
 
 # Format query with timestamp
 query = """
-#legacySQL
+#standardSQL
 SELECT
-  repo.name,
-  repo.url,
-  COUNT(DISTINCT actor.login) as actors,
-  CURRENT_DATE() as record_date,
-FROM (TABLE_DATE_RANGE([githubarchive:day.],
-  TIMESTAMP('{ds}'),
-  TIMESTAMP('{ds}')
-))
-GROUP BY repo.name, repo.url
-ORDER BY actors DESC
-LIMIT 2
+  repo_name,
+  SUM(count) as count,
+  SUM(actors) as actors,
+  ANY_VALUE(ds) as ds
+FROM
+  `githubtrends-255020.github_trends.github_all_daily_events`
+WHERE
+  ds = '{ds}'
+GROUP BY
+  repo_name
+ORDER BY
+  actors DESC,
+  count DESC
+LIMIT 9500
 """.strip().format(
     ds=ds
 )
 
 # Run the query against the cloud
-job = bq.query(query, location="US", job_config=QueryJobConfig(use_legacy_sql=True))
+job = bq.query(query, location="US", job_config=QueryJobConfig(use_legacy_sql=False))
 
 
 # Parse results
@@ -48,4 +51,4 @@ def convert_row(row):
 
 # Use parser, save results
 index = algolia.init_index("github_repos")
-index.save_objects([convert_row(row) for row in job])
+index.replace_all_objects([convert_row(row) for row in job])

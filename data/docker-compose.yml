@@ -6,7 +6,9 @@ x-airflow-base: &airflow
     context: .
     dockerfile: airflow.dockerfile
   volumes:
-    - "./:/usr/local/airflow"
+    - "./dags:/usr/local/airflow/dags"
+    # - "./plugins:/usr/local/airflow/plugins"
+    - "./airflow.prod.cfg:/usr/local/airflow/airflow.cfg"
   env_file:
     - env/airflow.env
     - env/metastore.env
