@@ -1,0 +1,9 @@
+{
+  "name": "githubtrends",
+  "env": {
+    "GCP_KEYFILE": "@gcp-keyfile",
+    "GCLOUD_PROJECT": "@gcloud_project",
+    "REDIS_HOST": "@redis_host",
+    "REDIS_PASSWORD": "@redis_password"
+  }
+}

@@ -52,6 +52,7 @@ export default function SearchBar() {
         onChange={onInputChange}
         onFocus={onFocus}
         onBlur={onBlur}
+        placeholder="sample/repo-name"
       />
     </div>
   );

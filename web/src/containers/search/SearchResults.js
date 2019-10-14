@@ -5,8 +5,8 @@ import algoliasearch from "algoliasearch/lite";
 import { useSelection } from "../select/context";
 import SearchContext from "./context";
 
-const appid = "7OG9E7U0M9";
-const apikey = "cc0e518dff8625407892d9e47e689b92";
+const appid = "ENR4KIKXXV";
+const apikey = "bad8d0917512edb0b6cd99d7321c498e";
 const searchClient = algoliasearch(appid, apikey);
 const index = searchClient.initIndex("github_repos");
 

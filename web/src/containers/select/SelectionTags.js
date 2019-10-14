@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { useSelection, withoutRepo } from "./context";
-import { color } from "../../libs/charts";
+import { color } from "../charts/utils";
 
 const TagList = styled.ul`
   padding: 0;
