@@ -10,4 +10,4 @@ FROM (TABLE_DATE_RANGE([githubarchive:day.],
 ))
 GROUP BY repo.name, repo.url
 ORDER BY actors DESC
-LIMIT 10000
+LIMIT 5000
