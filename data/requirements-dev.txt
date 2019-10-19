@@ -1,1 +1,0 @@
-apache-airflow[crypto,gcp,postgres,password]==1.10.5
