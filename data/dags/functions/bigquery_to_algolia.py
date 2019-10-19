@@ -6,10 +6,10 @@ from google.cloud import bigquery
 from google.cloud.bigquery.job import QueryJobConfig
 
 
-def bigquery_to_algolia(*args, **kwargs):
-    query = kwargs["query"]
-    algolia_app_id = kwargs["algolia_app_id"]
-    algolia_key = kwargs["algolia_key"]
+def bigquery_to_algolia(**kwargs):
+    query = kwargs["templates_dict"]["query"]
+    algolia_app_id = kwargs["templates_dict"]["algolia_app_id"]
+    algolia_key = kwargs["templates_dict"]["algolia_key"]
 
     # load gcp project id
     conn = BaseHook.get_connection("google_cloud_default")

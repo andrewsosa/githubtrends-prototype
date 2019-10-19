@@ -9,6 +9,7 @@ x-airflow-base: &airflow
     - "./dags:/usr/local/airflow/dags"
     # - "./plugins:/usr/local/airflow/plugins"
     - "./airflow.prod.cfg:/usr/local/airflow/airflow.cfg"
+    - "/usr/local/data/githubtrends/logs:/usr/local/airflow/logs"
   env_file:
     - env/airflow.env
     - env/metastore.env

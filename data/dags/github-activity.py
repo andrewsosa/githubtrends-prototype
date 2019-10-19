@@ -6,10 +6,14 @@ from airflow.contrib.operators.bigquery_operator import BigQueryOperator
 from airflow.operators.python_operator import PythonOperator
 from airflow.operators.latest_only_operator import LatestOnlyOperator
 
-from dags.functions.bigquery_to_algolia import bigquery_to_algolia
+from functions.bigquery_to_algolia import bigquery_to_algolia
 
 # from airflow.contrib.operators.bigquery_to_gcs import BigQueryToCloudStorageOperator
 # from airflow.contrib.operators.datastore_import_operator import DatastoreImportOperator
+
+
+def read(sqlpath):
+    return open(path.abspath(path.join(path.dirname(__file__), sqlpath))).read()
 
 
 default_args = {
@@ -75,9 +79,9 @@ with DAG(
         task_id="bq_gh_algolia_upload",
         python_callable=bigquery_to_algolia,
         provide_context=True,
-        templates_exts=[".sql"],
+        templates_exts=[".sql", ".hql"],
         templates_dict=dict(
-            query="./sql/github-algolia-export.sql",
+            query=read("./sql/github-algolia-export.sql"),
             algolia_app_id="{{ var.value.ALGOLIA_APP_ID }}",
             algolia_key="{{ var.value.ALGOLIA_ADMIN_KEY }}",
         ),
