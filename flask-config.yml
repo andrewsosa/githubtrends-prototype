@@ -1,0 +1,9 @@
+# Populate config dict from env vars
+
+postgres:
+  drivername: postgresql+psycopg2
+  host: <% ENV[POSTGRES_HOST] %>
+  port: <% ENV[POSTGRES_PORT] %>
+  database: <% ENV[POSTGRES_DB] %>
+  username: <% ENV[POSTGRES_USERNAME] %>
+  password: <% ENV[POSTGRES_PASSWORD] %>

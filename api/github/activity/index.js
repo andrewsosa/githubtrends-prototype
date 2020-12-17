@@ -15,8 +15,10 @@ const handler = nextConnect({
 });
 
 handler.use(morgan("dev"));
-handler.get(async (req, res) => {
+handler.post(async (req, res) => {
   const { repo } = req.query;
+
+  console.log(repo);
 
   // Make sure repo was included
   if (!repo) {
@@ -28,6 +30,7 @@ handler.get(async (req, res) => {
     // If it's not an "OK" code, it raises err.
     await got(`https://github.com/${repo}`);
   } catch (err) {
+    console.log("err");
     return res.status(err.response.statusCode).json(null);
   }
 
@@ -35,7 +38,7 @@ handler.get(async (req, res) => {
     await got(`http://${req.headers.host}/api/activity/download`, {
       searchParams: {
         repo,
-        callbackUrl: `http://${req.headers.host}/api/activity/callback`,
+        callbackUrl: `http://${req.headers.host}/api/db/git/commits/upload`,
       },
     });
     return res.status(202).json(null);

@@ -1,0 +1,11 @@
+{
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
+  },
+  "python.sortImports.path": ".venv/bin/isort",
+  "python.formatting.provider": "black",
+  "python.formatting.blackPath": ".venv/bin/black"
+}

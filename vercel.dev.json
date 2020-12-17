@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/db/:path*",
+      "destination": "http://localhost:5000/api/db/:path*"
+    }
+  ]
+}

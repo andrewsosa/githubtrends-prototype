@@ -53,8 +53,8 @@ export async function downloadHistory(repo) {
 const handler = nextConnect();
 
 handler.use(morgan("dev"));
-handler.get(async function gitlog(req, res) {
-  const { repo, callbackUrl } = req.query;
+handler.post(async function gitlog(req, res) {
+  const { repo, callbackUrl } = req.body;
 
   if (!repo) {
     return res.status(400).end("Invalid Request");
