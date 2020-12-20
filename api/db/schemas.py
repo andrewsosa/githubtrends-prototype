@@ -31,24 +31,27 @@ class CommitSchema(Schema):
 
     @post_load
     def flatten(self, data, **kwargs) -> Commit:
-
-        additions = data["diff"]["insertions"]
-        deletions = data["diff"]["deletions"]
-        delta_change = max(additions, deletions)
-
         dt: datetime = data["date"]
 
-        return Commit(
+        commit = Commit(
             hash=data["hash"],
             repo=data["repo"],
             ts=dt,
             author_email=data["author_email"],
             author_name=data["author_name"],
-            additions=additions,
-            deletions=deletions,
-            delta_change=delta_change,
-            files_changed=data["diff"]["changed"],
         )
+
+        if "diff" in data:
+            additions = data["diff"]["insertions"]
+            deletions = data["diff"]["deletions"]
+            delta_change = max(additions, deletions)
+
+            commit.additions = additions
+            commit.deletions = deletions
+            commit.delta_change = delta_change
+            commit.files_changed = data["diff"]["changed"]
+
+        return commit
 
 
 class UploadSchema(Schema):

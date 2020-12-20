@@ -1,0 +1,43 @@
+div.listWrapper {
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+
+.listWrapper > ul {
+  margin: 10px 0 0 0;
+  display: block;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * */
+
+li.badge {
+  display: inline-block;
+  padding: 4px;
+  border: 2px solid lightgray;
+  border-radius: 4px;
+  margin: 0 10px 10px 0;
+  padding: 7px 7px 7px 10px;
+}
+
+.badge a {
+  text-decoration: none !important;
+}
+
+.badge i {
+  margin: 4px;
+  cursor: pointer;
+}
+
+.badge > span > a > div {
+  cursor: pointer;
+
+  display: inline-block;
+}
+
+.badge > span > a > div > div {
+  display: inline-block;
+  margin: 0 0 0 8px;
+}

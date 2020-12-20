@@ -9,13 +9,20 @@
     "test": "jest"
   },
   "dependencies": {
+    "@mdx-js/loader": "^1.6.22",
+    "@next/mdx": "^10.0.3",
+    "axios": "^0.21.0",
+    "chart.js": "^2.9.4",
     "got": "^11.7.0",
+    "halfmoon": "^1.1.1",
     "mongodb": "^3.6.2",
     "morgan": "^1.10.0",
     "next": "9.4.4",
     "next-connect": "^0.9.0",
     "react": "16.13.1",
+    "react-chartjs-2": "^2.11.1",
     "react-dom": "16.13.1",
+    "react-spinners": "^0.9.0",
     "rimraf": "^3.0.2",
     "simple-git": "^1.132.0",
     "uuid": "^8.3.0"

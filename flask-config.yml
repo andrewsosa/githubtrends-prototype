@@ -1,4 +1,7 @@
 # Populate config dict from env vars
+basic:
+  DOWNLOAD_URL: <% ENV[DOWNLOAD_URL] %>
+  UPLOAD_URL: <% ENV[UPLOAD_URL] %>
 
 postgres:
   drivername: postgresql+psycopg2

@@ -7,20 +7,10 @@ import git from "simple-git/promise";
 import got from "got";
 import rimraf from "rimraf";
 import { v4 as uuid } from "uuid";
+import { remoteExists } from "./exists";
+import { route, queryParams } from "./_utils";
 
-export async function checkRemoteExists(repo) {
-  try {
-    console.log(`Checking if ${repo} exists...`);
-    await git().listRemote([`http://github.com/${repo}`]);
-    console.log(`http://github.com/${repo} seems to exists...`);
-    return true;
-  } catch (err) {
-    console.log(`http://github.com/${repo} does not exists...`);
-    return false;
-  }
-}
-
-export async function downloadHistory(repo) {
+export async function downloadCommits(repo) {
   const repoPath = path.resolve(os.tmpdir(), uuid());
   let records = [];
 
@@ -62,18 +52,11 @@ export async function downloadHistory(repo) {
   return records;
 }
 
-const handler = nextConnect();
-
-handler.use(morgan("dev"));
-handler.get(async function gitlog(req, res) {
+const getCommitsHandler = async (req, res) => {
   const { repo, callbackUrl } = req.query;
 
-  if (!repo) {
-    return res.status(400).end("Invalid Request");
-  }
-
   // Check if repo exists
-  if (!(await checkRemoteExists(repo))) {
+  if (!(await remoteExists(repo))) {
     return res.status(404).end(`${repo} does not exist`);
   }
 
@@ -92,7 +75,7 @@ handler.get(async function gitlog(req, res) {
 
     // Perform the download
     res.status(201).end(null);
-    const commits = await downloadHistory(repo);
+    const commits = await downloadCommits(repo);
     await got.post(callbackUrl, {
       json: { repo, commits },
     });
@@ -106,8 +89,11 @@ handler.get(async function gitlog(req, res) {
     return null;
   }
 
-  const commits = await downloadHistory(repo);
+  const commits = await downloadCommits(repo);
   return res.status(200).json(commits);
-});
+};
 
-export default handler;
+export default route()
+  .use(morgan("dev"))
+  .use(queryParams(["repo"]))
+  .get(getCommitsHandler);

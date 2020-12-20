@@ -7,6 +7,7 @@ from api.db.views import api
 
 app = flask.Flask(__name__)
 config = configly.Config.from_yaml("flask-config.yml")
+app.config.update(**config.basic.to_dict())
 app.config["SQLALCHEMY_DATABASE_URI"] = str(URL(**config.postgres.to_dict()))
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.url_map.strict_slashes = False

@@ -37,14 +37,21 @@ class RepoDownloadStatus(BaseModel):
     __tablename__ = "repo_downloadstatus"
 
     repo = db.Column(db.Text, primary_key=True)
-    download_started = db.Column(db.DateTime, nullable=False)
-    download_finished = db.Column(db.DateTime, nullable=False)
+    download_started = db.Column(db.DateTime, nullable=True)
+    download_finished = db.Column(db.DateTime, nullable=True)
 
     @property
     def in_progress(self) -> bool:
         return (
-            # start after finish
-            self.download_started > self.download_finished
+            # check if a download is started and not finished
+            (
+                (self.download_started and not self.download_finished)
+                or (
+                    # start after finish
+                    self.download_started
+                    > self.download_finished
+                )
+            )
             # 5m timeout
             and datetime.now() - self.download_started < timedelta(minutes=5)
         )
