@@ -25,16 +25,19 @@ const renderChartData = ({ datasets }) => {
   return {
     datasets: datasets.map((set, i) =>
       Object.assign(set, {
-        fill: true,
-        pointRadius: 5,
-        pointHoverRadius: 5,
+        fill: false,
+        pointRadius: 4,
+        pointHoverRadius: 4,
         pointBorderWidth: 1,
         backgroundColor: color(i, 0),
         borderColor: color(i, 1),
-        pointBackgroundColor: color(i, 1),
+        // pointBackgroundColor: color(i, 1),
+        pointBackgroundColor: "transparent",
         pointHoverBorderColor: color(i, 1),
-        pointBorderColor: "#fff",
-        pointHoverBackgroundColor: "#fff",
+        // pointBorderColor: "#fff",
+        pointBorderColor: "transparent",
+        // pointHoverBackgroundColor: "#fff",
+        pointHoverBackgroundColor: color(i, 1),
       })
     ),
   };
@@ -57,6 +60,25 @@ export default function LineChart({ repos, labelField, dataField }) {
   };
 
   const chartOpts = {
+    legend: {
+      onClick: (e) => e.stopPropagation(),
+      labels: {
+        // padding: 25,
+        // fontSize: 14,
+        usePointStyle: true,
+        generateLabels: (chart) => {
+          const { data } = chart;
+          if (!data.datasets.length) {
+            return [];
+          }
+          return data.datasets.map((dataset) => ({
+            text: dataset.label,
+            fillStyle: dataset.borderColor,
+            strokeStyle: "transparent",
+          }));
+        },
+      },
+    },
     scales: {
       xAxes: [
         {

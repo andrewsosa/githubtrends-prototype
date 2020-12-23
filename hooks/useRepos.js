@@ -4,9 +4,17 @@ import CommitService from "../services/CommitService";
 
 const Commits = new CommitService();
 
+export class Interval {
+  static ONE_YEARS = "ONE_YEARS";
+  static TWO_YEARS = "TWO_YEARS";
+  static FIVE_YEARS = "FIVE_YEARS";
+  static TEN_YEARS = "TEN_YEARS";
+}
+
 const initialState = {
   search: "",
   repos: {},
+  interval: Interval.ONE_YEARS,
 };
 
 export default function useRepos() {
@@ -42,7 +50,7 @@ export default function useRepos() {
 
   const commitSearch = () => {
     setState((s) => {
-      Commits.pull(s.search).then(onCommitsReceived);
+      Commits.pull(s.search, s.interval).then(onCommitsReceived);
       return {
         ...s,
         search: "",
@@ -51,12 +59,29 @@ export default function useRepos() {
     });
   };
 
+  const setInterval = (interval) => {
+    setState((s) => ({
+      ...s,
+      interval,
+    }));
+  };
+
   const updateSearch = (value) => {
     setState((s) => ({ ...s, search: value }));
   };
 
+  // Whenever interval changes, also has effect for initially
+  // loading data
+  React.useEffect(() => {
+    console.log("interval change effect");
+    const { repos, interval } = state;
+    Object.keys(repos).forEach((r) =>
+      Commits.pull(r, interval).then(onCommitsReceived)
+    );
+  }, [state.interval]);
+
   return {
     state,
-    actions: { commitSearch, rmRepo, updateSearch },
+    actions: { commitSearch, rmRepo, setInterval, updateSearch },
   };
 }

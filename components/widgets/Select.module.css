@@ -1,0 +1,55 @@
+/* Copied/adjusted from npmtrends */
+
+.chartHeadingSelect {
+  /* color: #000000; */
+  /* font-weight: 200; */
+  /* letter-spacing: 2px; */
+  /* font-size: 24px; */
+  background-color: transparent;
+  border: 1px solid #000000;
+  border-width: 0 0 1px 0;
+  /* margin-left: 10px; */
+  border-radius: 0;
+  /* padding: 2px 26px 2px 6px; */
+  /* padding: 2px 6px 2px; */
+  margin: 2px 6px 2px 0;
+  line-height: 1.2;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.chartHeadingSelect:focus {
+  border-width: 0 0 1px 0;
+  /* border-color: rgb(255, 170, 0); */
+  outline: none;
+}
+
+.chartHeadingSelect option {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.selectContainer {
+  position: relative;
+  /* border: none;
+  margin: 0 4px 0 -4px; */
+}
+
+.selectContainer::before {
+  /* content: "\f002";
+  font-family: "NpmTrends";
+  font-size: 12px; */
+  width: 0;
+  height: 0;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  margin-top: -4px;
+  color: #000000;
+  -moz-osx-font-smoothing: grayscale;
+  /* font-style: normal;
+  font-weight: normal;
+  line-height: 1; */
+}

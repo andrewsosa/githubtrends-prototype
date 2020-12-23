@@ -1,3 +1,4 @@
+import enum
 import logging
 import urllib.parse
 
@@ -13,6 +14,29 @@ from api.db.views import api
 
 logger = logging.getLogger(__name__)
 
+
+@enum.unique
+class INTERVALS(enum.Enum):
+    ONE_YEARS = "ONE_YEARS"
+    TWO_YEARS = "TWO_YEARS"
+    FIVE_YEARS = "FIVE_YEARS"
+    TEN_YEARS = "TEN_YEARS"
+
+    @classmethod
+    def _missing_(cls, value: object):
+        return cls.ONE_YEARS
+
+    @property
+    def params(self) -> tuple:
+        return {
+            INTERVALS.ONE_YEARS: ("1 year", "1 month"),
+            INTERVALS.TWO_YEARS: ("2 year", "2 month"),
+            INTERVALS.FIVE_YEARS: ("5 year", "6 month"),
+            INTERVALS.TEN_YEARS: ("10 year", "12 month"),
+            # "ALL_TIME": ('12 month', '1 month'),
+        }[self]
+
+
 HISTOGRAM_QUERY = """
 SELECT
     calendar.ts,
@@ -25,7 +49,7 @@ FROM
     (
         SELECT
             generate_series(
-                date_trunc('month', CURRENT_DATE - INTERVAL '12 month') :: TIMESTAMP,
+                date_trunc('month', CURRENT_DATE - INTERVAL :start) :: TIMESTAMP,
                 date_trunc('month', CURRENT_DATE) :: TIMESTAMP,
                 INTERVAL '1 month'
             ) :: TIMESTAMP AS ts
@@ -68,8 +92,8 @@ def _get_download_status(repo) -> RepoDownloadStatus:
 
 
 @api.route("/git/histogram", methods=["GET"])
-@query_parameters("repo")
-def git_histogram(repo: str):
+@query_parameters("repo", "interval")
+def git_histogram(repo: str, interval: str):
 
     # Check if a download is required
     if _download_required(repo):
@@ -86,8 +110,14 @@ def git_histogram(repo: str):
             f"{download_url}?{query_string}", code=307  # temp redirect
         )
 
+    start_date, chunk_by = INTERVALS(interval).params
     histogram: ResultProxy = db.session.execute(
-        text(HISTOGRAM_QUERY), {"repo": repo, "table": AsIs(Commit.__tablename__)}
+        text(HISTOGRAM_QUERY),
+        {
+            "repo": repo,
+            "table": AsIs(Commit.__tablename__),
+            "start": start_date,
+        },
     )
 
     if not histogram.rowcount:
