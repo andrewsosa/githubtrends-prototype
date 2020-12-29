@@ -1,0 +1,18 @@
+div.scroll {
+  overflow-x: scroll;
+}
+
+td.wrapper {
+  padding-right: 0;
+}
+
+div.square {
+  border-radius: 4px;
+  background-color: grey;
+  width: 20px;
+  height: 20px;
+}
+
+thead.head > th {
+  font-weight: 500;
+}

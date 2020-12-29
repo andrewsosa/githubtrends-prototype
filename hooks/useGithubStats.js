@@ -5,6 +5,7 @@ export default function useGithubStats() {
   const [stats, setState] = React.useState({});
 
   const addRepo = (name) => {
+    if (name in stats) return;
     axios({
       method: "get",
       url: `https://api.github.com/repos/${name}`,

@@ -3,7 +3,7 @@ import { Line } from "react-chartjs-2";
 
 import styles from "./LineChart.module.css";
 
-const COLOR_ARRAY = [
+export const COLOR_ARRAY = [
   [0, 116, 217],
   [255, 133, 27],
   [46, 204, 64],
@@ -16,7 +16,7 @@ const COLOR_ARRAY = [
   [1, 255, 112],
 ];
 
-const color = (i, a) => {
+export const color = (i, a) => {
   const rgb = COLOR_ARRAY[i % COLOR_ARRAY.length].join(",");
   return `rgba(${rgb},${a})`;
 };
@@ -60,6 +60,7 @@ export default function LineChart({ repos, labelField, dataField }) {
   };
 
   const chartOpts = {
+    maintainAspectRatio: false,
     legend: {
       onClick: (e) => e.stopPropagation(),
       labels: {

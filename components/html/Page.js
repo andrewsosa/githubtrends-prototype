@@ -12,6 +12,9 @@ export default function Page({ children }) {
           </Content>
         </Container>
         {children}
+        <footer>
+          Created by <a href="https://github.com/andrewsosa">Andrew Sosa</a>
+        </footer>
       </div>
     </div>
   );

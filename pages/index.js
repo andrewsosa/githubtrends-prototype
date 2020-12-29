@@ -3,11 +3,11 @@ import Container from "../components/html/Container";
 import Content from "../components/html/Content";
 import Page from "../components/html/Page";
 import { BadgeList, RepoBadge } from "../components/widgets/RepoBadge";
-import LineChart from "../components/widgets/LineChart";
+import LineChart, { COLOR_ARRAY } from "../components/widgets/LineChart";
 import useRepos, { Interval } from "../hooks/useRepos";
-import useGithubStats from "../hooks/useGithubStats";
 import Select from "../components/widgets/Select";
-import { Table } from "../components/widgets/Table";
+import GithubStats from "../components/widgets/GithubStats";
+import Footer from "../components/Footer.mdx";
 
 const Reveal = ({ reveal, children }) => {
   return reveal ? <>{children}</> : <></>;
@@ -25,7 +25,6 @@ export default function Index() {
   const [field, setField] = React.useState("commits");
   const { state, actions } = useRepos();
   const { repos, search, interval } = state;
-  const [stats, getStats] = useGithubStats();
 
   const onFormSubmit = (e) => {
     e.preventDefault();
@@ -60,12 +59,13 @@ export default function Index() {
         />
       </form>
       <BadgeList>
-        {Object.keys(repos).map((r) => (
+        {Object.keys(repos).map((r, i) => (
           <RepoBadge
             key={r}
             name={r}
             onX={onX}
             isLoading={repos[r].status === "loading"}
+            colorIndex={i}
           />
         ))}
       </BadgeList>
@@ -92,23 +92,21 @@ export default function Index() {
           </Select>
         </h2>
         <LineChart repos={repos} labelField="ts" dataField={field} />
-        <h2 className="content-title">Github Stats</h2>
-        <table className="table">
-          <thead>
-            <th key="stars">stars</th>
-            <th key="issues">issues</th>
-            <th key="updated">updated</th>
-            <th key="created">created</th>
-          </thead>
-          <tbody>
-            {Object.entries(stats).map(([repoName, repoStats]) => (
-              <tr key={repoName}>
-                <td>{repoName}</td>
-                <td>{repoStats.stargazersCount}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <GithubStats names={Object.keys(repos)} />
+        <div className="row">
+          <div className="col-6">
+            <h2 className="content-title">Related</h2>
+            <a>Coming soon!</a>
+          </div>
+          <div className="col-6">
+            <h2 className="content-title">Popular</h2>
+            <a>Coming soon!</a>
+          </div>
+        </div>
+
+        <div style={{ margin: "60px 0" }}>
+          <Footer />
+        </div>
       </Reveal>
     </Wrapper>
   );

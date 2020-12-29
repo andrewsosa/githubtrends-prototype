@@ -16,5 +16,23 @@ select:focus {
 }
 
 h2.content-title {
-  margin: 30px 0 20px;
+  margin-top: 36px;
+}
+
+code {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 4px;
+  font-size: 0.9em;
+}
+
+footer {
+  background-color: rgba(0, 0, 0, 0.025);
+  border-top-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  padding: 2rem;
+  text-align: center;
 }

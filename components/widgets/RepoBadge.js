@@ -1,6 +1,7 @@
 import React from "react";
 import { PulseLoader } from "react-spinners";
 import styles from "./RepoBadge.module.css";
+import { color as RGB } from "./LineChart";
 
 export const BadgeList = ({ children }) => (
   <div className={styles.listWrapper}>
@@ -8,8 +9,8 @@ export const BadgeList = ({ children }) => (
   </div>
 );
 
-export const RepoBadge = ({ name, isLoading, color, onX }) => (
-  <li className={styles.badge}>
+export const RepoBadge = ({ name, isLoading, colorIndex, onX }) => (
+  <li className={styles.badge} style={{ borderColor: RGB(colorIndex, 1) }}>
     <span>
       <a className="text-reset">
         <span>{name}</span>
